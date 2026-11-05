@@ -19,6 +19,6 @@ public class Main {
         for (Product p: injections.getProducts()) {
             System.out.println("   " + p);
         }
-        
+
     }
 }

@@ -1,42 +1,52 @@
 package ru.garantshop.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Category {
     private Long id;
     private String name;
     private String description;
-    private List<Product> products;
+
+    // Инициализируем сразу при объявлении
+    private List<Product> products = new ArrayList<>();
+    private Map<Long, Product> productMap = new HashMap<>();
 
     public Category(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.products = products;
     }
 
-    public Long getId() {
-        return id;
+    public void addProduct(Product product) {
+        products.add(product);
+        productMap.put(product.getId(), product);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+    public Product getProductById(Long id) {
+        return productMap.get(id);
     }
 
     public List<Product> getProducts() {
         return products;
     }
 
-    public void addProduct(Product product) {
-        this.products.add(product);
+    public int getProductCount() {
+        return products.size();
     }
+
+    public boolean hasProduct(Long id) {
+        return productMap.containsKey(id);
+    }
+
+    public Long getId() { return id; }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
 
     @Override
     public String toString() {
-        return "Category{id=" + id + ", name='" + name + "'}";
+        return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
     }
 }

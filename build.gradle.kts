@@ -1,20 +1,45 @@
 plugins {
-    id("java")
+    java
+    application
 }
 
-group = "ru.garant"
-version = "1.0-SNAPSHOT"
+group = "ru.garantshop"
+version = "1.0.0"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:6.0.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // Lombok для упрощения кода
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
+
+    // Для работы с JSON
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.3")
 }
 
-tasks.test {
+application {
+    mainClass.set("ru.garantshop.Main")
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+// Настройка кодировки при ЗАПУСКЕ приложения
+tasks.withType<JavaExec> {
+    jvmArgs("-Dfile.encoding=UTF-8")
+    standardOutput = System.out
+    errorOutput = System.err
+}
+
+tasks.withType<Test> {
     useJUnitPlatform()
 }
