@@ -16,7 +16,7 @@ public class Main {
         System.out.println("=== КАТАЛОГ ГАРАНТ ===");
         System.out.println(injections);
         System.out.println("Товары: ");
-        for (Product p: injections.getProducts()) {
+        for (Product p : injections.getProducts()) {
             System.out.println("   " + p);
         }
 

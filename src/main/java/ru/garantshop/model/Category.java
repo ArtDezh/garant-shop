@@ -38,9 +38,17 @@ public class Category {
         return productMap.containsKey(id);
     }
 
-    public Long getId() { return id; }
-    public String getName() { return name; }
-    public String getDescription() { return description; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     // Найти все товары, которые есть в наличии
     public List<Product> getAvailableProducts() {
