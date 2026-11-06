@@ -77,6 +77,14 @@ public class Category {
                 .toList();
     }
 
+    // Получить только названия товаров
+    public List<String> getProductNames() {
+        return products.stream()
+                .map(Product::getName)
+                .toList();
+    }
+
+
     @Override
     public String toString() {
         return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
