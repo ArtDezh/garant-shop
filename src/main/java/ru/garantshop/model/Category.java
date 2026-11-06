@@ -91,6 +91,12 @@ public class Category {
                 .count();
     }
 
+    // Найти самый дешёвый товар
+    public Product getCheapestProduct() {
+        return products.stream()
+                .min(Comparator.comparing(Product::getPrice))
+                .orElse(null);
+    }
 
     @Override
     public String toString() {
