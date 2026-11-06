@@ -84,6 +84,13 @@ public class Category {
                 .toList();
     }
 
+    // Посчитать количество товаров в наличии
+    public long countAvailableProducts() {
+        return products.stream()
+                .filter(Product::isInStock)
+                .count();
+    }
+
 
     @Override
     public String toString() {
