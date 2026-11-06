@@ -29,15 +29,10 @@ application {
     mainClass.set("ru.garantshop.Main")
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-// Настройка кодировки при ЗАПУСКЕ приложения
-tasks.withType<JavaExec> {
-    jvmArgs("-Dfile.encoding=UTF-8")
-    standardOutput = System.out
-    errorOutput = System.err
+tasks.withType<JavaExec>().configureEach {
+    jvmArgs("-Dfile.encoding=UTF-8",
+        "-Dsun.stdout.encoding=UTF-8",
+        "-Dsun.stderr.encoding=UTF-8")
 }
 
 tasks.withType<Test> {
