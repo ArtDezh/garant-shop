@@ -52,6 +52,13 @@ public class Category {
                 .toList();
     }
 
+    // Найти все товары, которых нет в наличии
+    public List<Product> getOutOfStockProducts() {
+        return products.stream()
+                .filter(p -> !p.isInStock())
+                .toList();
+    }
+
     @Override
     public String toString() {
         return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
