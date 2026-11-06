@@ -51,7 +51,7 @@ public class Category {
                 .filter(Product::isInStock)
                 .toList();
     }
-    
+
     // Найти все товары, которых нет в наличии
     public List<Product> getOutOfStockProducts() {
         return products.stream()
@@ -63,6 +63,13 @@ public class Category {
     public List<Product> getProductsCheaperThan(double price) {
         return products.stream()
                 .filter(p -> p.getPrice() < price)
+                .toList();
+    }
+
+    // Найти все товары дороже указанной цены
+    public List<Product> getProductsMoreExpensiveThan(double price) {
+        return products.stream()
+                .filter(p -> p.getPrice() > price)
                 .toList();
     }
 
