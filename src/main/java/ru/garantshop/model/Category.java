@@ -52,8 +52,6 @@ public class Category {
                 .toList();
     }
 
-    
-
     @Override
     public String toString() {
         return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
