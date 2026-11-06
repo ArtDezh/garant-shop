@@ -51,11 +51,18 @@ public class Category {
                 .filter(Product::isInStock)
                 .toList();
     }
-
+    
     // Найти все товары, которых нет в наличии
     public List<Product> getOutOfStockProducts() {
         return products.stream()
                 .filter(p -> !p.isInStock())
+                .toList();
+    }
+
+    // Найти все товары дешевле указанной цены
+    public List<Product> getProductsCheaperThan(double price) {
+        return products.stream()
+                .filter(p -> p.getPrice() < price)
                 .toList();
     }
 
