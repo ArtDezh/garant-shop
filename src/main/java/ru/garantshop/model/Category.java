@@ -1,9 +1,6 @@
 package ru.garantshop.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Category {
     private Long id;
@@ -70,6 +67,13 @@ public class Category {
     public List<Product> getProductsMoreExpensiveThan(double price) {
         return products.stream()
                 .filter(p -> p.getPrice() > price)
+                .toList();
+    }
+
+    // Отсортировать товары по цене (от дешёвого к дорогому)
+    public List<Product> getProductsSortedByPrice() {
+        return products.stream()
+                .sorted(Comparator.comparing(Product::getPrice))
                 .toList();
     }
 
