@@ -98,6 +98,13 @@ public class Category {
                 .orElse(null);
     }
 
+    // Найти самый дорогой товар
+    public Product getMostExpensiveProduct() {
+        return products.stream()
+                .max(Comparator.comparing(Product::getPrice))
+                .orElse(null);
+    }
+
     @Override
     public String toString() {
         return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
