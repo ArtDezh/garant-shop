@@ -45,6 +45,15 @@ public class Category {
     public String getName() { return name; }
     public String getDescription() { return description; }
 
+    // Найти все товары, которые есть в наличии
+    public List<Product> getAvailableProducts() {
+        return products.stream()
+                .filter(Product::isInStock)
+                .toList();
+    }
+
+    
+
     @Override
     public String toString() {
         return "Category{id=" + id + ", name='" + name + "', products=" + products.size() + "}";
