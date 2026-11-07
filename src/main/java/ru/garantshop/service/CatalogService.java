@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
+import ru.garantshop.model.Product;
 
 import javax.xml.catalog.Catalog;
 import java.io.File;
@@ -62,5 +63,15 @@ public class CatalogService {
                 .filter(c -> c.getId().equals(id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    // Найти все товары по названию (поиск)
+    public List<Product> searchProductsByName(List<Category> categories, String query) {
+        String lowQuery = query.toLowerCase();
+
+        return categories.stream()
+                .flatMap(category -> category.getProducts().stream())
+                .filter(product -> product.getName().toLowerCase().contains(lowQuery))
+                .toList();
     }
 }
