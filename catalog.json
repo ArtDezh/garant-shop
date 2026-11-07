@@ -1,0 +1,79 @@
+[ {
+  "id" : 1,
+  "name" : "Колющие и инъекционные",
+  "description" : "Шприцы, иглы, катетеры",
+  "products" : [ {
+    "id" : 1,
+    "name" : "Шприц 5 мл",
+    "description" : "Одноразовый, 3-компонентный",
+    "price" : 4.5,
+    "inStock" : true
+  }, {
+    "id" : 2,
+    "name" : "Шприц 10 мл",
+    "description" : "Одноразовый, 3-компонентный",
+    "price" : 5.2,
+    "inStock" : true
+  }, {
+    "id" : 3,
+    "name" : "Игла 21G",
+    "description" : "0.8х40 мм, зеленая",
+    "price" : 0.8,
+    "inStock" : true
+  }, {
+    "id" : 4,
+    "name" : "Игла 23G",
+    "description" : "0.6х30 мм, синяя",
+    "price" : 0.7,
+    "inStock" : false
+  }, {
+    "id" : 5,
+    "name" : "Катетер внутривенный",
+    "description" : "18G, розовый",
+    "price" : 12.5,
+    "inStock" : true
+  } ],
+  "productCount" : 5
+}, {
+  "id" : 2,
+  "name" : "Перчатки",
+  "description" : "Смотровые и хирургические",
+  "products" : [ {
+    "id" : 6,
+    "name" : "Перчатки нитриловые M",
+    "description" : "Неопудренные, 100 шт",
+    "price" : 890.0,
+    "inStock" : true
+  }, {
+    "id" : 7,
+    "name" : "Перчатки латексные L",
+    "description" : "Опудренные, 100 шт",
+    "price" : 650.0,
+    "inStock" : true
+  }, {
+    "id" : 8,
+    "name" : "Перчатки хирургические",
+    "description" : "Стерильные, пара",
+    "price" : 45.0,
+    "inStock" : false
+  } ],
+  "productCount" : 3
+}, {
+  "id" : 3,
+  "name" : "Пластыри и повязки",
+  "description" : "Бактерицидные, катетерные",
+  "products" : [ {
+    "id" : 9,
+    "name" : "Пластырь бактерицидный",
+    "description" : "Набор 20 шт",
+    "price" : 85.0,
+    "inStock" : true
+  }, {
+    "id" : 10,
+    "name" : "Пластырь рулонный",
+    "description" : "5м x 2.5см",
+    "price" : 120.0,
+    "inStock" : true
+  } ],
+  "productCount" : 2
+} ]
