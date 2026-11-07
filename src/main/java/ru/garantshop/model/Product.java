@@ -7,6 +7,12 @@ public class Product {
     private double price;
     private boolean inStock;
 
+
+    // ✅ Конструктор по умолчанию — ОБЯЗАТЕЛЬНО для Jackson
+    public Product() {
+
+    }
+
     public Product(Long id, String name, String description, double price, boolean inStock) {
         this.id = id;
         this.name = name;

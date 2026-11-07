@@ -1,5 +1,7 @@
 package ru.garantshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.*;
 
 public class Category {
@@ -9,7 +11,15 @@ public class Category {
 
     // Инициализируем сразу при объявлении
     private List<Product> products = new ArrayList<>();
+
+    // @JsonIgnore — это поле НЕ будет сохраняться в JSON
+    // Это внутренняя структура для быстрого поиска
+    @JsonIgnore
     private Map<Long, Product> productMap = new HashMap<>();
+
+    // ✅ Конструктор по умолчанию — ОБЯЗАТЕЛЬНО для Jackson
+    public Category() {
+    }
 
     public Category(Long id, String name, String description) {
         this.id = id;
@@ -23,7 +33,19 @@ public class Category {
     }
 
     public Product getProductById(Long id) {
+        // Если productMap пуст (например, после загрузки из JSON),
+        // ищем в списке products
+        if (productMap.isEmpty() && !products.isEmpty()) {
+            rebuildProductMap();
+        }
         return productMap.get(id);
+    }
+
+    private void rebuildProductMap() {
+        productMap.clear();
+        for (Product product : products) {
+            productMap.put(product.getId(), product);
+        }
     }
 
     public List<Product> getProducts() {
@@ -35,6 +57,9 @@ public class Category {
     }
 
     public boolean hasProduct(Long id) {
+        if (productMap.isEmpty() && !products.isEmpty()) {
+            rebuildProductMap();
+        }
         return productMap.containsKey(id);
     }
 
