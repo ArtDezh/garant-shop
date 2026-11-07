@@ -81,4 +81,12 @@ public class CatalogService {
                 .flatMap(category -> category.getProducts().stream())
                 .toList();
     }
+
+    // Получить все товары, которые есть в наличии (из всех категорий)
+    public List<Product> getAllAvailableProducts(List<Category> categories) {
+        return categories.stream()
+                .flatMap(category -> category.getProducts().stream())
+                .filter(Product::isInStock)
+                .toList();
+    }
 }
