@@ -4,7 +4,6 @@ import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
 import ru.garantshop.service.CatalogService;
 
-import javax.xml.catalog.Catalog;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class Main {
         // === РАБОТАЕМ С ДАННЫМИ ===
 
         System.out.println("\n--- Все категории ---");
-        for (Category cat: categories) {
+        for (Category cat : categories) {
             System.out.println(cat);
         }
 
