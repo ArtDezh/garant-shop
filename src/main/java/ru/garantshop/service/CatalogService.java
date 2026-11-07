@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
 
-import javax.xml.catalog.Catalog;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +47,8 @@ public class CatalogService {
 
         try {
             List<Category> categories = objectMapper.readValue(file,
-                    new TypeReference<List<Category>>() {});
+                    new TypeReference<List<Category>>() {
+                    });
             System.out.println("✅ Каталог загружен из файла. Категорий: " + categories.size());
             return categories;
         } catch (IOException e) {
