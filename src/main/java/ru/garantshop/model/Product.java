@@ -41,6 +41,26 @@ public class Product {
         return inStock;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
     @Override
     public String toString() {
         return "Product{name='" + name + "', price=" + price + ", inStock=" + inStock + "}";

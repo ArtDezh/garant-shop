@@ -1,9 +1,11 @@
 package ru.garantshop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.*;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Category {
     private Long id;
     private String name;
@@ -52,6 +54,11 @@ public class Category {
         return products;
     }
 
+    // ✅ Сеттер для Jackson
+    public void setProducts(List<Product> products) {
+        this.products = products != null ? new ArrayList<>(products) : new ArrayList<>();
+    }
+
     public int getProductCount() {
         return products.size();
     }
@@ -76,6 +83,7 @@ public class Category {
     }
 
     // Найти все товары, которые есть в наличии
+    @JsonIgnore
     public List<Product> getAvailableProducts() {
         return products.stream()
                 .filter(Product::isInStock)
@@ -83,6 +91,7 @@ public class Category {
     }
 
     // Найти все товары, которых нет в наличии
+    @JsonIgnore
     public List<Product> getOutOfStockProducts() {
         return products.stream()
                 .filter(p -> !p.isInStock())
@@ -90,6 +99,7 @@ public class Category {
     }
 
     // Найти все товары дешевле указанной цены
+    @JsonIgnore
     public List<Product> getProductsCheaperThan(double price) {
         return products.stream()
                 .filter(p -> p.getPrice() < price)
@@ -97,6 +107,7 @@ public class Category {
     }
 
     // Найти все товары дороже указанной цены
+    @JsonIgnore
     public List<Product> getProductsMoreExpensiveThan(double price) {
         return products.stream()
                 .filter(p -> p.getPrice() > price)
@@ -104,6 +115,7 @@ public class Category {
     }
 
     // Отсортировать товары по цене (от дешёвого к дорогому)
+    @JsonIgnore
     public List<Product> getProductsSortedByPrice() {
         return products.stream()
                 .sorted(Comparator.comparing(Product::getPrice))
@@ -111,6 +123,7 @@ public class Category {
     }
 
     // Получить только названия товаров
+    @JsonIgnore
     public List<String> getProductNames() {
         return products.stream()
                 .map(Product::getName)
@@ -118,6 +131,7 @@ public class Category {
     }
 
     // Посчитать количество товаров в наличии
+    @JsonIgnore
     public long countAvailableProducts() {
         return products.stream()
                 .filter(Product::isInStock)
@@ -125,6 +139,7 @@ public class Category {
     }
 
     // Найти самый дешёвый товар
+    @JsonIgnore
     public Product getCheapestProduct() {
         return products.stream()
                 .min(Comparator.comparing(Product::getPrice))
@@ -132,6 +147,7 @@ public class Category {
     }
 
     // Найти самый дорогой товар
+    @JsonIgnore
     public Product getMostExpensiveProduct() {
         return products.stream()
                 .max(Comparator.comparing(Product::getPrice))
