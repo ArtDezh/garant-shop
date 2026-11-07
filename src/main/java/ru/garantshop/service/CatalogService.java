@@ -1,11 +1,13 @@
 package ru.garantshop.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogService {
@@ -28,6 +30,28 @@ public class CatalogService {
             System.out.println("✅ Каталог сохранён в файл: " + FILE_PATH);
         } catch (IOException e) {
             System.err.println("❌ Ошибка при сохранении каталога: " + e.getMessage());
+        }
+    }
+
+    // Загрузить список категорий из файла
+    public List<Category> loadCatalog() {
+
+        File file = new File(FILE_PATH);
+
+        // Если файл не существует — возвращаем пустой список
+        if (!file.exists()) {
+            System.out.println("⚠️ Файл не найден. Создаём новый каталог.");
+            return new ArrayList<>();
+        }
+
+        try {
+            List<Category> categories = objectMapper.readValue(file,
+                    new TypeReference<List<Category>>() {});
+            System.out.println("✅ Каталог загружен из файла. Категорий: " + categories.size());
+            return categories;
+        } catch (IOException e) {
+            System.err.println("❌ Ошибка при загрузке каталога: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 }
