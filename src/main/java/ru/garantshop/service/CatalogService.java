@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 
+import javax.xml.catalog.Catalog;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,5 +54,13 @@ public class CatalogService {
             System.err.println("❌ Ошибка при загрузке каталога: " + e.getMessage());
             return new ArrayList<>();
         }
+    }
+
+    // Найти категорию по ID
+    public Category findCategoryById(List<Category> categories, Long id) {
+        return categories.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 }
