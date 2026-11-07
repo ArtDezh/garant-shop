@@ -74,4 +74,11 @@ public class CatalogService {
                 .filter(product -> product.getName().toLowerCase().contains(lowQuery))
                 .toList();
     }
+
+    // Получить все товары из всех категорий
+    public List<Product> getAllProducts(List<Category> categories) {
+        return categories.stream()
+                .flatMap(category -> category.getProducts().stream())
+                .toList();
+    }
 }
