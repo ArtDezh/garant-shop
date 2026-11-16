@@ -1,11 +1,14 @@
 package ru.garantshop.repository;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 
+import javax.swing.plaf.ToolBarUI;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JasonCatalogRepository implements CatalogRepository {
@@ -31,6 +34,19 @@ public class JasonCatalogRepository implements CatalogRepository {
 
     @Override
     public List<Category> load() {
-        return List.of();
+        File file = new File(FILE_PATH);
+
+        if (!file.exists()) {
+            System.out.println("⚠️ Файл не найден. Создаём новый каталог.");
+            return new ArrayList<>();
+        }
+
+        try {
+            return objectMapper.readValue(file, new TypeReference<List<Category>>() {
+            });
+        } catch (IOException e) {
+            System.err.println("❌ Ошибка при загрузке: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 }
