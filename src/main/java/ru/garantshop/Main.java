@@ -2,6 +2,9 @@ package ru.garantshop;
 
 import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
+import ru.garantshop.repository.CatalogRepository;
+import ru.garantshop.repository.InMemoryCatalogRepository;
+import ru.garantshop.repository.JsonCatalogRepository;
 import ru.garantshop.service.CatalogService;
 
 import java.util.ArrayList;
@@ -10,7 +13,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        CatalogService service = new CatalogService();
+        // Выбираем, какое хранилище использовать
+        // Можно закомментировать одну строку и раскомментировать другую
+        CatalogRepository repository = new JsonCatalogRepository();
+        //CatalogRepository repository = new InMemoryCatalogRepository();
+
+        CatalogService service = new CatalogService(repository);
 
         System.out.println("=== КАТАЛОГ ГАРАНТ ===");
 

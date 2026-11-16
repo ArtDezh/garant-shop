@@ -5,18 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 
-import javax.swing.plaf.ToolBarUI;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JasonCatalogRepository implements CatalogRepository {
+public class JsonCatalogRepository implements CatalogRepository {
 
     private static final String FILE_PATH = "catalog.json";
     private final ObjectMapper objectMapper;
 
-    public JasonCatalogRepository() {
+    public JsonCatalogRepository() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
