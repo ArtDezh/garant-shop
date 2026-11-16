@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
+import ru.garantshop.repository.CatalogRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,46 +16,21 @@ public class CatalogService {
 
     private static final String FILE_PATH = "catalog.json";
 
-    // ObjectMapper — главный инструмент для работы с JSON
-    private final ObjectMapper objectMapper;
+    // Используем ИНТЕРФЕЙС, а не конкретную реализацию
+    private final CatalogRepository repository;
 
-    public CatalogService() {
-        this.objectMapper = new ObjectMapper();
-        // Включаем красивое форматирование (чтобы файл был читабельным)
-        this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+    public CatalogService(CatalogRepository repository) {
+        this.repository = repository;
     }
 
     // Сохранить список категорий в файл
     public void saveCatalog(List<Category> categories) {
-        try {
-            objectMapper.writeValue(new File(FILE_PATH), categories);
-            System.out.println("✅ Каталог сохранён в файл: " + FILE_PATH);
-        } catch (IOException e) {
-            System.err.println("❌ Ошибка при сохранении каталога: " + e.getMessage());
-        }
+        repository.save(categories);
     }
 
     // Загрузить список категорий из файла
     public List<Category> loadCatalog() {
-
-        File file = new File(FILE_PATH);
-
-        // Если файл не существует — возвращаем пустой список
-        if (!file.exists()) {
-            System.out.println("⚠️ Файл не найден. Создаём новый каталог.");
-            return new ArrayList<>();
-        }
-
-        try {
-            List<Category> categories = objectMapper.readValue(file,
-                    new TypeReference<List<Category>>() {
-                    });
-            System.out.println("✅ Каталог загружен из файла. Категорий: " + categories.size());
-            return categories;
-        } catch (IOException e) {
-            System.err.println("❌ Ошибка при загрузке каталога: " + e.getMessage());
-            return new ArrayList<>();
-        }
+        return repository.load();
     }
 
     // Найти категорию по ID
