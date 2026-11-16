@@ -1,15 +1,9 @@
 package ru.garantshop.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
 import ru.garantshop.repository.CatalogRepository;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CatalogService {

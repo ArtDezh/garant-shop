@@ -3,7 +3,6 @@ package ru.garantshop;
 import ru.garantshop.model.Category;
 import ru.garantshop.model.Product;
 import ru.garantshop.repository.CatalogRepository;
-import ru.garantshop.repository.InMemoryCatalogRepository;
 import ru.garantshop.repository.JsonCatalogRepository;
 import ru.garantshop.service.CatalogService;
 
