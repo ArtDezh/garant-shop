@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.garantshop.model.Category;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class JasonCatalogRepository implements CatalogRepository {
@@ -19,7 +21,12 @@ public class JasonCatalogRepository implements CatalogRepository {
 
     @Override
     public void save(List<Category> categories) {
-        
+        try {
+            objectMapper.writeValue(new File(FILE_PATH), categories);
+            System.out.println("✅ Каталог сохранён в файл: " + FILE_PATH);
+        } catch (IOException e) {
+            System.out.println("❌ Ошибка при сохранении: " + e.getMessage());
+        }
     }
 
     @Override
